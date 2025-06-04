@@ -11,6 +11,9 @@ import java.util.List;
 @Getter @Setter
 public class Mentee extends User {
 
+    private String school;
+    private String grade;
+
     @OneToMany(mappedBy = "mentee", cascade = CascadeType.ALL)
     private List<MentoringRequest> requests = new ArrayList<>();
 }
