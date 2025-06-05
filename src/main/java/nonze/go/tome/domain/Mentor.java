@@ -13,4 +13,8 @@ public class Mentor extends User {
 
     @OneToMany(mappedBy = "mentor", cascade = CascadeType.ALL)
     private List<Application> applications = new ArrayList<>();
+
+    private String university;
+    private String department;
+    private String proofFilePath;
 }

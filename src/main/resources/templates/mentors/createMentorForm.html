@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: header}"></head>
+<body>
+<div class="container">
+  <div th:replace="~{fragments/bodyHeader :: bodyHeader}"/>
+
+  <form th:action="@{/mentors/new}" th:object="${mentorForm}" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+      <label>이름</label>
+      <input type="text" th:field="*{name}" class="form-control"/>
+    </div>
+    <div class="form-group">
+      <label>이메일</label>
+      <input type="email" th:field="*{email}" class="form-control"/>
+    </div>
+    <div class="form-group">
+      <label>비밀번호</label>
+      <input type="password" th:field="*{password}" class="form-control"/>
+    </div>
+    <div class="form-group">
+      <label>대학교명</label>
+      <input type="text" th:field="*{university}" class="form-control"/>
+    </div>
+    <div class="form-group">
+      <label>전공/학과</label>
+      <input type="text" th:field="*{department}" class="form-control"/>
+    </div>
+    <div class="form-group">
+      <label>재학증명서 업로드</label>
+      <input type="file" th:field="*{proofFile}" class="form-control"/>
+    </div>
+    <div class="form-group">
+</div>
+</body>
+</html>
