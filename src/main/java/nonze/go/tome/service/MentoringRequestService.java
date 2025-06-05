@@ -33,4 +33,9 @@ public class MentoringRequestService {
     public MentoringRequest findOne(Long id) {
         return requestRepository.findById(id).orElse(null);
     }
+
+    @Transactional
+    public void save(MentoringRequest request) {
+        requestRepository.save(request);
+    }
 }

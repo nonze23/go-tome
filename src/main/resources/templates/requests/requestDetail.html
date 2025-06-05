@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: header}"></head>
+<body>
+<div class="container">
+    <div th:replace="~{fragments/bodyHeader :: bodyHeader}"/>
+    <h2 th:text="${request.title}">제목</h2>
+    <p th:text="${request.subject}">과목/주제</p>
+    <p th:text="${request.content}">내용</p>
+    <hr>
+    <h4>답변/댓글</h4>
+    <ul>
+        <li th:each="c : ${comments}">
+            <span th:text="${c.writer.name}">작성자</span> :
+            <span th:text="${c.content}">내용</span>
+            <span th:text="${#temporals.format(c.createdAt, 'yyyy-MM-dd HH:mm')}">작성일</span>
+        </li>
+    </ul>
+    <form th:action="@{'/requests/' + ${request.id} + '/comments'}" th:object="${commentForm}" method="post">
+        <input type="text" th:field="*{content}" placeholder="댓글/답변 입력" required />
+        <button type="submit">등록</button>
+    </form>
+    <hr>
+    <h4>멘토 신청자</h4>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>멘토 이름</th>
+            <th>지원일</th>
+            <th>매칭</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="app : ${applications}">
+            <td th:text="${app.mentor.name}">멘토이름</td>
+            <td th:text="${#temporals.format(app.appliedAt, 'yyyy-MM-dd HH:mm')}">지원일</td>
+            <td>
+                <form th:action="@{/matches/match}" method="post" style="display:inline;">
+                    <input type="hidden" name="requestId" th:value="${request.id}" />
+                    <input type="hidden" name="mentorId" th:value="${app.mentor.id}" />
+                    <button type="submit" class="btn btn-success btn-sm">매칭</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div th:replace="~{fragments/footer :: footer}"/>
+</div>
+</body>
+</html>

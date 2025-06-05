@@ -17,17 +17,17 @@ public class MatchService {
 
     private final MatchRepository matchRepository;
 
+    // 매칭 생성 (insert)
     @Transactional
-    public Long match(MentoringRequest request, Mentor mentor) {
+    public void match(MentoringRequest request, Mentor mentor) {
         Match match = new Match();
         match.setRequest(request);
         match.setMentor(mentor);
         match.setMatchedAt(LocalDateTime.now());
-
         matchRepository.save(match);
-        return match.getId();
     }
 
+    // 매칭 단건 조회
     public Match findOne(Long id) {
         return matchRepository.findById(id).orElse(null);
     }
