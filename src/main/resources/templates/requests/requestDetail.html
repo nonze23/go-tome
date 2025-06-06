@@ -3,7 +3,7 @@
 <head th:replace="~{fragments/header :: header}"></head>
 <body>
 <div class="container">
-    <div th:replace="~{fragments/bodyHeader :: bodyHeader}"/>
+    <div th:replace="~{fragments/bodyHeader :: bodyHeader}"></div>
     <h2 th:text="${request.title}">제목</h2>
     <p th:text="${request.subject}">과목/주제</p>
     <p th:text="${request.content}">내용</p>
@@ -16,7 +16,10 @@
             <span th:text="${#temporals.format(c.createdAt, 'yyyy-MM-dd HH:mm')}">작성일</span>
         </li>
     </ul>
-    <form th:action="@{'/requests/' + ${request.id} + '/comments'}" th:object="${commentForm}" method="post">
+    <!-- 댓글 폼: 멘토만 작성 가능 -->
+    <form th:if="${session.loginUser != null and #strings.contains(session.loginUser.class.name, 'Mentor')}"
+          th:action="@{'/requests/' + ${request.id} + '/comments'}"
+          th:object="${commentForm}" method="post">
         <input type="text" th:field="*{content}" placeholder="댓글/답변 입력" required />
         <button type="submit">등록</button>
     </form>
@@ -35,7 +38,9 @@
             <td th:text="${app.mentor.name}">멘토이름</td>
             <td th:text="${#temporals.format(app.appliedAt, 'yyyy-MM-dd HH:mm')}">지원일</td>
             <td>
-                <form th:action="@{/matches/match}" method="post" style="display:inline;">
+                <!-- [멘티]만 매칭 가능 -->
+                <form th:if="${session.loginUser != null and #strings.contains(session.loginUser.class.name, 'Mentee')}"
+                      th:action="@{/matches/match}" method="post" style="display:inline;">
                     <input type="hidden" name="requestId" th:value="${request.id}" />
                     <input type="hidden" name="mentorId" th:value="${app.mentor.id}" />
                     <button type="submit" class="btn btn-success btn-sm">매칭</button>
@@ -44,7 +49,7 @@
         </tr>
         </tbody>
     </table>
-    <div th:replace="~{fragments/footer :: footer}"/>
+    <div th:replace="~{fragments/footer :: footer}"></div>
 </div>
 </body>
 </html>

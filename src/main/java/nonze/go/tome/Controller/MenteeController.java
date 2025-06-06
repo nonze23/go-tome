@@ -27,8 +27,8 @@ public class MenteeController {
         mentee.setName(form.getName());
         mentee.setEmail(form.getEmail());
         mentee.setPassword(form.getPassword());
-        mentee.setSchool(form.getSchool()); // 🆕
-        mentee.setGrade(form.getGrade());   // 🆕
+        mentee.setSchool(form.getSchool());
+        mentee.setGrade(form.getGrade());
         menteeService.register(mentee);
         return "redirect:/";
     }

@@ -3,7 +3,7 @@
 <head th:replace="~{fragments/header :: header}"></head>
 <body>
 <div class="container">
-  <div th:replace="~{fragments/bodyHeader :: bodyHeader}"/>
+  <div th:replace="~{fragments/bodyHeader :: bodyHeader}"></div>
   <h2>멘토링 요청 목록</h2>
   <table class="table">
     <thead>
@@ -23,7 +23,9 @@
       <td th:text="${req.subject}">과목</td>
       <td th:text="${#temporals.format(req.createdAt, 'yyyy-MM-dd')}">등록일</td>
       <td>
-        <form th:action="@{/applications/apply}" method="post" style="display:inline;">
+        <!-- [멘토]만 신청 가능 -->
+        <form th:if="${session.loginUser != null and #strings.contains(session.loginUser.class.name, 'Mentor')}"
+              th:action="@{/applications/apply}" method="post" style="display:inline;">
           <input type="hidden" name="requestId" th:value="${req.id}" />
           <button type="submit" class="btn btn-primary btn-sm">신청</button>
         </form>
@@ -31,7 +33,7 @@
     </tr>
     </tbody>
   </table>
-  <div th:replace="~{fragments/footer :: footer}"/>
+  <div th:replace="~{fragments/footer :: footer}"></div>
 </div>
 </body>
 </html>

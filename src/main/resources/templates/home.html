@@ -15,12 +15,16 @@
         <h1>Gotome</h1>
         <p class="lead">멘토링 플랫폼</p>
         <p>
-            <a class="btn btn-lg btn-secondary" href="/mentees/new">멘티 가입</a>
-            <a class="btn btn-lg btn-secondary" href="/mentors/new">멘토 가입</a>
+            <!-- 로그인 X일 때 가입 버튼 -->
+            <a class="btn btn-lg btn-secondary" th:if="${session.loginUser == null}" href="/mentees/new">멘티 가입</a>
+            <a class="btn btn-lg btn-secondary" th:if="${session.loginUser == null}" href="/mentors/new">멘토 가입</a>
         </p>
         <p>
             <a class="btn btn-lg btn-primary" href="/requests">멘토링 요청 목록</a>
-            <a class="btn btn-lg btn-primary" href="/requests/new">멘토링 요청 등록</a>
+            <!-- [멘티]만 요청 등록 가능 -->
+            <a class="btn btn-lg btn-primary"
+               th:if="${session.loginUser != null and #strings.contains(session.loginUser.class.name, 'Mentee')}"
+               href="/requests/new">멘토링 요청 등록</a>
         </p>
     </div>
     <div th:replace="~{fragments/footer :: footer}"></div>

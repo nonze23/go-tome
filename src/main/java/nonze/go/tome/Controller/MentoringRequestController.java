@@ -1,5 +1,6 @@
 package nonze.go.tome.Controller;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import nonze.go.tome.domain.Mentee;
 import nonze.go.tome.domain.MentoringRequest;
@@ -31,15 +32,22 @@ public class MentoringRequestController {
     private final ApplicationService applicationService;
 
     @GetMapping("/new")
-    public String createForm(Model model) {
+    public String createForm(Model model, HttpSession session) {
+        Object user = session.getAttribute("loginUser");
+        if (!(user instanceof Mentee)) {
+            return "redirect:/login";
+        }
         model.addAttribute("mentoringRequestForm", new MentoringRequestForm());
         return "requests/createRequestForm";
     }
 
     @PostMapping("/new")
-    public String create(@ModelAttribute("mentoringRequestForm") MentoringRequestForm form) {
-        // 실제 서비스에서는 로그인 멘티 정보로 대체
-        Mentee mentee = menteeService.findOne(1L);
+    public String create(@ModelAttribute("mentoringRequestForm") MentoringRequestForm form, HttpSession session) {
+        Object user = session.getAttribute("loginUser");
+        if (!(user instanceof Mentee)) {
+            return "redirect:/login";
+        }
+        Mentee mentee = (Mentee) user;
         MentoringRequest request = new MentoringRequest();
         request.setTitle(form.getTitle());
         request.setContent(form.getContent());
@@ -70,8 +78,13 @@ public class MentoringRequestController {
 
     @PostMapping("/{id}/comments")
     public String addComment(@PathVariable("id") Long id,
-                             @ModelAttribute("commentForm") CommentForm form) {
-        Mentor writer = mentorService.findOne(1L);
+                             @ModelAttribute("commentForm") CommentForm form,
+                             HttpSession session) {
+        Object user = session.getAttribute("loginUser");
+        if (!(user instanceof Mentor)) {
+            return "redirect:/login";
+        }
+        Mentor writer = (Mentor) user;
         MentoringRequest request = requestService.findOne(id);
 
         Comment comment = new Comment();
