@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>멘티 마이페이지</title>
+</head>
+<body>
+<h2 th:text="'멘티: ' + ${mentee.name} + '의 마이페이지'">멘티 마이페이지</h2>
+
+<h3>내가 쓴 멘토링 요청</h3>
+<table>
+  <thead>
+  <tr>
+    <th>제목</th>
+    <th>과목/주제</th>
+    <th>상태</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="req : ${myRequests}">
+    <td th:text="${req.title}"></td>
+    <td th:text="${req.subject}"></td>
+    <td th:text="${req.status}"></td>
+  </tr>
+  </tbody>
+</table>
+
+<h3>내가 매칭된 내역</h3>
+<table>
+  <thead>
+  <tr>
+    <th>요청 제목</th>
+    <th>멘토 이름</th>
+    <th>매칭일</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="match : ${myMatches}">
+    <td th:text="${match.request.title}"></td>
+    <td th:text="${match.mentor.name}"></td>
+    <td th:text="${#temporals.format(match.matchedAt, 'yyyy-MM-dd HH:mm')}"></td>
+  </tr>
+  </tbody>
+</table>
+
+</body>
+</html>

@@ -38,4 +38,9 @@ public class MentoringRequestService {
     public void save(MentoringRequest request) {
         requestRepository.save(request);
     }
+
+    // 멘티가 쓴 요청 목록
+    public List<MentoringRequest> findByMentee(Mentee mentee) {
+        return requestRepository.findByMentee(mentee);
+    }
 }

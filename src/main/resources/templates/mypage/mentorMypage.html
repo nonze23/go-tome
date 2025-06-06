@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>멘토 마이페이지</title>
+</head>
+<body>
+<h2 th:text="'멘토: ' + ${mentor.name} + '의 마이페이지'">멘토 마이페이지</h2>
+
+<h3>내가 지원한 멘토링 요청</h3>
+<table>
+    <thead>
+    <tr>
+        <th>요청 제목</th>
+        <th>지원일</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="app : ${myApplications}">
+        <td th:text="${app.request.title}"></td>
+        <td th:text="${#temporals.format(app.appliedAt, 'yyyy-MM-dd HH:mm')}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<h3>내가 매칭된 내역</h3>
+<table>
+    <thead>
+    <tr>
+        <th>요청 제목</th>
+        <th>매칭일</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="match : ${myMatches}">
+        <td th:text="${match.request.title}"></td>
+        <td th:text="${#temporals.format(match.matchedAt, 'yyyy-MM-dd HH:mm')}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

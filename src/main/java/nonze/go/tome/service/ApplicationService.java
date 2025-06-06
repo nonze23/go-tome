@@ -32,7 +32,7 @@ public class ApplicationService {
         return applicationRepository.findByRequestId(requestId);
     }
 
-    public List<Application> findByMentor(Long mentorId) {
-        return applicationRepository.findByMentorId(mentorId);
+    public List<Application> findByMentor(Mentor mentor) {
+        return applicationRepository.findByMentor(mentor);
     }
 }
