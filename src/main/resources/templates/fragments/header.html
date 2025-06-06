@@ -1,9 +1,15 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:fragment="header">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/css/jumbotron-narrow.css">
-  <title>Gotome</title>
-</head>
+<!-- src/main/resources/templates/fragments/header.html -->
+<nav th:fragment="header" class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+  <div class="container">
+    <a class="navbar-brand" href="/" style="font-weight: bold">Gotome</a>
+    <div class="navbar-nav ms-auto">
+      <span th:if="${session.loginUser == null}">
+        <a class="nav-link" href="/login">로그인</a>
+      </span>
+      <span th:if="${session.loginUser != null}">
+        <span class="nav-link" th:text="'환영합니다, ' + ${session.loginUser.name}"></span>
+        <a class="nav-link" href="/logout">로그아웃</a>
+      </span>
+    </div>
+  </div>
+</nav>

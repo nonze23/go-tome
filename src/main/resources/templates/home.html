@@ -1,9 +1,16 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/header :: header}"></head>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/jumbotron-narrow.css">
+    <title>Gotome 홈</title>
+</head>
 <body>
+<div th:replace="fragments/header :: header"></div>
 <div class="container">
-    <div th:replace="~{fragments/bodyHeader :: bodyHeader}"/>
+    <div th:replace="~{fragments/bodyHeader :: bodyHeader}"></div>
     <div class="jumbotron">
         <h1>Gotome</h1>
         <p class="lead">멘토링 플랫폼</p>
@@ -16,7 +23,7 @@
             <a class="btn btn-lg btn-primary" href="/requests/new">멘토링 요청 등록</a>
         </p>
     </div>
-    <div th:replace="~{fragments/footer :: footer}"/>
+    <div th:replace="~{fragments/footer :: footer}"></div>
 </div>
 </body>
 </html>
