@@ -3,7 +3,7 @@
 <head th:replace="~{fragments/header :: header}"></head>
 <body>
 <div class="container">
-  <div th:replace="~{fragments/bodyHeader :: bodyHeader}"/>
+  <div th:replace="~{fragments/bodyHeader :: bodyHeader}"></div>
 
   <form th:action="@{/mentors/new}" th:object="${mentorForm}" method="post" enctype="multipart/form-data">
     <div class="form-group">
@@ -31,6 +31,11 @@
       <input type="file" th:field="*{proofFile}" class="form-control"/>
     </div>
     <div class="form-group">
+      <button type="submit" class="btn btn-primary">등록</button>
+    </div>
+  </form>
+
+  <div th:replace="~{fragments/footer :: footer}"></div>
 </div>
 </body>
 </html>
