@@ -44,6 +44,7 @@
   - 멘티 → 멘토링 요청 등록
   - 멘토 → 멘토링 요청 목록에서 원하는 멘티 게시글 신청, 답글 달기
   - 멘티 → 멘토링 요청 목록에서 답글 확인
+    
     <img width="321" alt="image" src="https://github.com/user-attachments/assets/dac00d8a-30e0-4933-ae41-d500741078cb" />
     <img width="321" alt="image" src="https://github.com/user-attachments/assets/ba49fc53-b157-4833-9445-e13c2e2d199a" />
   
