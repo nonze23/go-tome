@@ -40,15 +40,18 @@
 
 4. 주요 테스트 기능
   - 회원가입 (멘토/멘티 선택 가능)
+  - 로그인 (역할에 따라 기능 분기)
+  - 멘티 → 멘토링 요청 등록
+  - 멘토 → 멘토링 요청 목록에서 원하는 멘티 게시글 신청, 답글 달기
+  - 멘티 → 멘토링 요청 목록에서 답글 확인
     <img width="321" alt="image" src="https://github.com/user-attachments/assets/dac00d8a-30e0-4933-ae41-d500741078cb" />
     <img width="321" alt="image" src="https://github.com/user-attachments/assets/ba49fc53-b157-4833-9445-e13c2e2d199a" />
-  - 로그인 (역할에 따라 기능 분기)
+  
     <img width="321" alt="image" src="https://github.com/user-attachments/assets/41d8ae32-41ed-44a5-b67d-fc42fc1a3efa" />
     <img width="321" alt="image" src="https://github.com/user-attachments/assets/c6602b64-6b8d-4e31-88fe-39f8028f2902" />
-  - 멘티 → 멘토링 요청 등록
+  
     <img width="321" alt="image" src="https://github.com/user-attachments/assets/3821e44e-44bf-4ac2-9ee0-1b8ae4013baa" />
     <img width="457" alt="image" src="https://github.com/user-attachments/assets/019097b0-9a61-4093-8d63-f8e0a8322c03" />
-  - 멘토 → 멘토링 요청 목록에서 원하는 멘티 게시글 신청, 답글 달기
+  
     <img width="457" alt="image" src="https://github.com/user-attachments/assets/e0d7b84b-7a53-44af-a3b8-bedf980210ad" />
     <img width="1016" alt="image" src="https://github.com/user-attachments/assets/d9d6b85e-bf2d-42de-bb59-e31d0e28ddf5" />
-  - 멘티 → 멘토링 요청 목록에서 답글 확인
