@@ -1,28 +1,42 @@
 프로젝트 실행 안내 (GoTome)
 
 1. 개발환경
-   - JDK 17 이상
-   - IntelliJ 또는 Gradle 지원 IDE
-   - H2 데이터베이스 (내장 사용)
+   - Java JDK 17 이상
+   - IntelliJ IDEA 또는 Gradle 지원 IDE
+   - H2 Database (TCP 서버 모드 사용)
 
-2. 실행 방법
-   ① IntelliJ에서 프로젝트 폴더(go-tome)를 [Open]합니다.
-   ② Gradle 탭 > Tasks > application > bootRun 실행
-       또는 아래 명령어 중 하나 사용:
-         (Mac/Linux) ./gradlew bootRun
-         (Windows)   gradlew.bat bootRun
-   ③ 정상 실행되면 브라우저에서 아래 주소로 접속:
-       → http://localhost:8081
+2. 프로젝트 실행 순서
 
-3. 참고 사항
-   - DB는 H2(Localhost) 방식으로 자동 생성됩니다.
-   - 기본 포트는 8081로 설정되어 있습니다.
-   - 초기 사용자 등록은 직접 회원가입 페이지에서 진행해야 합니다.
-   - H2 콘솔 URL:
-     http://localhost:8081/h2-console
-     JDBC URL: jdbc:h2:tcp://localhost/~/gotome
-     User Name: sa
-     Password:  (빈칸)
+① H2 데이터베이스 서버 실행 (※ 필수)
+   아래 명령어를 터미널에 입력하여 H2 서버를 먼저 실행해 주세요:
+
+   예시 (Mac 기준):
+   java -cp ~/Downloads/h2/bin/h2-1.4.199.jar org.h2.tools.Server
+
+   실행 후:
+      - 대부분의 환경에서 브라우저가 자동으로 열립니다
+        → http://localhost:8082 (H2 Web Console)
+
+② Spring Boot 애플리케이션 실행
+
+   방법 1: IntelliJ에서
+   - 프로젝트 폴더(go-tome) 열기
+   - `GoTomeApplication.java` 클래스에 ▶️ 버튼 클릭 (또는 bootRun)
+
+   방법 2: 터미널에서
+   - (Mac/Linux)  ./gradlew bootRun
+   - (Windows)    gradlew.bat bootRun
+
+③ 브라우저에서 애플리케이션 접속
+   → http://localhost:8081
+
+④ H2 Console 접속
+   → http://localhost:8081/h2-console
+
+   접속 정보:
+   - JDBC URL: jdbc:h2:tcp://localhost/~/gotome
+   - User Name: sa
+   - Password: (빈칸)
 
 4. 주요 테스트 기능
   - 회원가입 (멘토/멘티 선택 가능)
